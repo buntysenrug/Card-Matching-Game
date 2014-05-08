@@ -47,4 +47,20 @@
         _rank = rank;
     }
 }
+
+-(int)match:(NSArray *)otherCards
+{
+    int score=0;
+    if([otherCards count]==1){
+        PlayingCard *othercard =[otherCards firstObject];
+        if([self.suit isEqualToString:othercard.suit]){
+            score=1;
+        }else if(self.rank==othercard.rank){
+            score=4;
+        }
+    }
+    
+    return score;
+}
+
 @end

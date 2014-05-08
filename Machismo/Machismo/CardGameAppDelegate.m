@@ -7,13 +7,19 @@
 //
 
 #import "CardGameAppDelegate.h"
+#import <Parse/Parse.h>
 
 @implementation CardGameAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    return YES;
+    [Parse setApplicationId:@"avJwOqbpzXRtIhhTnay9Z1Y4jphzJv6sf8QEO7pd"
+                  clientKey:@"hoKFIAyPZrhOm23kzcZ2LHaTapouqkS434cvoKia"];
+    
+    [PFUser logOut];
+
+       return YES;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
