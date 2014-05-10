@@ -9,6 +9,7 @@
 #import "CardMatchGame.h"
 @interface CardMatchGame()
 @property (nonatomic,readwrite) NSInteger score;
+@property(nonatomic,readwrite)NSInteger no_of_matches;
 @property(nonatomic,strong) NSMutableArray *cards; //No of cards in the Game
 
 
@@ -41,9 +42,9 @@
     return  nil;
 }
 
-static const int PENALTY=3;
+static const int PENALTY=1;
 static const int BONUS=4;
-static const int COST_OF_MISS=2;
+static const int COST_OF_MISS=1;
 
 -(Card *)cardAtIndex:(NSUInteger)index{
     return (index <[self.cards count ]) ? self.cards[index]:nil;
@@ -64,6 +65,7 @@ static const int COST_OF_MISS=2;
                         self.score+=matchScore*BONUS;
                         card.matched=YES;
                         otherCard.matched=YES;
+                        self.no_of_matches+=1;
                     }else{
                         self.score-=PENALTY;
                         otherCard.chosen=NO;

@@ -15,6 +15,9 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property(strong,nonatomic) Deck *deck;
 @property(strong,nonatomic) CardMatchGame *game;
+@property(readwrite,nonatomic) NSInteger enabled_button;
+@property (weak, nonatomic) IBOutlet UILabel *score;
+
 
 
 @end
@@ -35,8 +38,17 @@
         [cardButton setTitle:[self titleforCard:card] forState:UIControlStateNormal];
         [cardButton setBackgroundImage:[self backgroundImageofCard:card] forState:UIControlStateNormal];
         cardButton.enabled=!card.isMatched;
+        self.score.text=[NSString stringWithFormat:@"Score is :- @%d",self.game.score];
+        if(([self.cardButtons count] - (self.game.no_of_matches*2)) == 1){
+            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Congratulations" message:@"You completed successfully" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+            [alert dismissWithClickedButtonIndex:0 animated:YES];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            
+        }
     }
 }
+
 
 -(NSString *)titleforCard:(Card *)card{
     return card.isChosen ? card.contents : @"";

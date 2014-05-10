@@ -16,6 +16,7 @@
 -(Card *)cardAtIndex:(NSUInteger)index;
 
 @property(nonatomic,readonly)NSInteger score;
+@property(nonatomic,readonly)NSInteger no_of_matches;
 
 
 @end

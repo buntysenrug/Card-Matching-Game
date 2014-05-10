@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "MyLoginViewController.h"
+#import "MySignupViewController.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *userlabel;
@@ -33,7 +35,8 @@
 }
 -(void)updateUI{
     PFUser *user=[PFUser currentUser];
-    self.userlabel.text= [user objectForKey:@"username"];
+    self.userlabel.text=[NSString stringWithFormat:@"Welcome %@",[user objectForKey:@"username"]];
+    //self.userlabel.text= [user objectForKey:@"username"];
 
     
 }
@@ -41,9 +44,9 @@
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     if(![PFUser currentUser]){
-    PFLogInViewController *login=[[PFLogInViewController alloc] init];
+    MyLoginViewController *login=[[MyLoginViewController alloc] init];
     [login setDelegate:self];
-    PFSignUpViewController *signup=[[PFSignUpViewController alloc] init];
+    MySignupViewController *signup=[[MySignupViewController alloc] init];
     [signup setDelegate:self];
     [login setSignUpController:signup];
     [self presentViewController:login animated:YES completion:nil];
